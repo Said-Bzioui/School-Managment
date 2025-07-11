@@ -50,11 +50,8 @@ It is designed for educational institutions to manage daily academic operations 
 | ![](./screenshots/attendance_chart.png) | ![](./screenshots/gender_chart.png) | ![](./screenshots/events.png) |
 
 ---
+| Attendance Chart 
+|------------------|
+| ![](./screenshots/absence.png) 
 
-## 🧑‍💻 Installation Guide
 
-### 📁 Clone the repo
-
-```bash
-git clone https://github.com/your-username/gestion-scolarite.git
-cd gestion-scolarite
