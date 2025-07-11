@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('teacher_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('polls_id')->constrained()->onDelete('cascade');;
             $table->string('name');
-            $table->string('level'); 
-            $table->integer('capacite'); 
+            $table->enum('niveu', ['1', '2'])->default('1');
+            $table->string('filier');
+            $table->integer('capacite');
             $table->timestamps();
         });
     }

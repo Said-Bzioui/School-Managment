@@ -77,7 +77,7 @@ const FinanceChart = () => {
   return (
     <div className="bg-white rounded-xl w-full h-[450px] p-4"> 
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">Finance</h1>
+        <h1 className="text-lg ">Finance</h1>
         <Ellipsis/>
       </div>
       <ResponsiveContainer width="100%" height="90%">

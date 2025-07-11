@@ -32,6 +32,10 @@ class Lesson extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+    public function absance()
+    {
+        return $this->belongsTo(Absences::class);
+    }
 
     public function teacher()
     {

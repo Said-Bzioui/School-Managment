@@ -27,11 +27,11 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade');
 
-            $table->enum('type', ['examen', 'controle', 'devoir'])->default('examen');
+            $table->enum('type', ['cc1', 'cc2', 'cc3','EFM']);
 
-            $table->float('note')->nullable(); 
+            $table->float('note'); 
 
-            $table->date('date');
+            $table->date('date')->nullable();
 
             $table->timestamps();
         });

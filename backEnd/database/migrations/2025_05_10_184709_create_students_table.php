@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('phone')->nullable();
+            $table->string('photo')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('cef')->unique();
             $table->date('birth_date')->nullable();
             $table->string('address')->nullable();

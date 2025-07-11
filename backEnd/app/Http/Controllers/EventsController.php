@@ -10,7 +10,7 @@ class EventsController extends Controller
     // عرض جميع الأحداث
     public function index()
     {
-        $events = Events::with(['creator', 'class'])->get();
+        $events = Events::with(['creator', 'class'])->paginate(10);
         return response()->json($events);
     }
 

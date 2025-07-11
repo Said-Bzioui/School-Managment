@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    
+
     use HasFactory;
 
     protected $fillable = [
         'user_id',
+        'nom',
+        'prenom',
         'cef',
         'birth_date',
+        'photo',
+        'phone',
+        'gender',
         'address',
         'class_id',
     ];
@@ -32,8 +37,7 @@ class Student extends Model
         return $this->hasMany(Parents::class);
     }
     public function results()
-{
-    return $this->hasMany(Result::class);
-}
-
+    {
+        return $this->hasMany(Result::class);
+    }
 }

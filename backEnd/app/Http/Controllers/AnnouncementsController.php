@@ -11,7 +11,7 @@ class AnnouncementsController extends Controller
     // عرض جميع الإعلانات
     public function index()
     {
-        return response()->json(Announcements::latest()->get());
+        return response()->json(Announcements::latest()->paginate(10));
     }
 
     // إضافة إعلان جديد
@@ -22,8 +22,6 @@ class AnnouncementsController extends Controller
             'content' => 'required|string',
             'user_id' => 'nullable|exists:users,id',
             'target' => 'in:all,students,teachers,parents',
-            'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
         ]);
 
         $announcement = Announcements::create($validated);

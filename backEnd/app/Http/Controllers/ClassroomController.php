@@ -7,21 +7,19 @@ use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
 {
-    // عرض جميع الأقسام (classrooms) مع الدروس المرتبطة
     public function index()
     {
-        $classrooms = Classroom::with('lessons')->get();
+        $classrooms = Classroom::with('lessons')->paginate(10);
         return response()->json($classrooms);
     }
 
-    // عرض قسم واحد حسب ID مع الدروس المرتبطة
+
     public function show($id)
     {
         $classroom = Classroom::with('lessons')->findOrFail($id);
         return response()->json($classroom);
     }
 
-    // إضافة قسم جديد
     public function store(Request $request)
     {
         $request->validate([
@@ -33,7 +31,6 @@ class ClassroomController extends Controller
         return response()->json($classroom, 201);
     }
 
-    // تعديل قسم
     public function update(Request $request, $id)
     {
         $classroom = Classroom::findOrFail($id);
@@ -42,7 +39,6 @@ class ClassroomController extends Controller
         return response()->json($classroom);
     }
 
-    // حذف قسم
     public function destroy($id)
     {
         $classroom = Classroom::findOrFail($id);

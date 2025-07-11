@@ -10,19 +10,34 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        return Teacher::with('user','subjects','classes')->get();
+        return Teacher::with('user', 'subjects', 'classes')->paginate(10); 
     }
+
 
     public function store(Request $request)
     {
+        // dd([
+        //     'nom' => $request->nom,
+        //     'prenom' => $request->prenom,
+        //     'phone' => $request->phone,
+        //     'gender' => $request->gender,
+        //     'speciality' => $request->speciality,
+        // ]);
         $request->validate([
-            'name' => 'required',
+            'nom' => 'required',
+            'prenom' => 'required',
             'email' => 'required|email|unique:users',
-            'speciality' => 'required',
+            'phone' => 'required|string',
+            'gender' => 'required|string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+
+        $photoPath = null;
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('avatars', 'public');
+        }
         $user = User::create([
-            'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt('password'),
             'role' => 'teacher',
@@ -30,8 +45,11 @@ class TeacherController extends Controller
 
         $teacher = Teacher::create([
             'user_id' => $user->id,
-            'speciality' => $request->speciality,
-            'hire_date' => $request->hire_date,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'photo' => $photoPath,
         ]);
 
         return response()->json(['teacher' => $teacher], 201);

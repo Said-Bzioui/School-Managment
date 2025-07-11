@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->foreignId('user_id')->constrained();
-            $table->enum('target', ['all', 'students', 'teachers', 'parents'])->default('all'); // الفئة المستهدفة
+            $table->enum('target', ['all', 'students', 'teachers', 'parents'])->default('all'); 
             $table->timestamps();
         });
     }

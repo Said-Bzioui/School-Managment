@@ -12,7 +12,7 @@ export function StudentLayout() {
                 <StudentMenu />
             </div>
             {/* Right Side */}
-            <div className="w-[86%] md:w-[92%] lg:w-[86%] bg-sky-200/10 min-h-screen">
+            <div className="w-[86%] md:w-[92%] lg:w-[86%] bg-muted min-h-screen">
                 <Header />
                 <div className="flex flex-col lg:flex-row m-4 space-y-4 space-x-4 rounded-md">
                     <Outlet />

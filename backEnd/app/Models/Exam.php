@@ -15,6 +15,10 @@ class Exam extends Model
         'class_id',
         'subject_id',
         'date',
+        'start_time',
+        'end_time',
+        'status',
+        'type',
     ];
 
     // العلاقة مع الأستاذ

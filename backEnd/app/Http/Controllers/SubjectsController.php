@@ -7,24 +7,25 @@ use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
 {
-    // عرض كل المواد
+
     public function index()
     {
-        return response()->json(Subject::with(['teacher'])->get());
+        return response()->json(Subject::with(['teacher'])->paginate(10));
     }
 
-    // عرض مادة واحدة
     public function show($id)
     {
         $subject = Subject::with(['teacher'])->findOrFail($id);
         return response()->json($subject);
     }
 
-    // إضافة مادة جديدة
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'niveu' => 'required',
+            'filier' => 'required',
+            'coificient' => 'required|integer',
             'masse_horaire' => 'required|integer',
             'teacher_id' => 'required|exists:teachers,id'
         ]);
@@ -33,7 +34,6 @@ class SubjectsController extends Controller
         return response()->json($subject, 201);
     }
 
-    // تحديث مادة
     public function update(Request $request, $id)
     {
         $subject = Subject::findOrFail($id);
@@ -48,7 +48,6 @@ class SubjectsController extends Controller
         return response()->json($subject);
     }
 
-    // حذف مادة
     public function destroy($id)
     {
         $subject = Subject::findOrFail($id);

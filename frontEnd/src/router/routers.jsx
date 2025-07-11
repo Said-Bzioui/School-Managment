@@ -19,16 +19,22 @@ import ProfilePage from "../pages/admin/profile"
 import LoginPage from "../pages/auth/loginPage"
 
 import StudentDashboard from "@/pages/student/dashboard"
-import TeachersDashboard from "@/pages/teachers/student/dashboard"
-import ParentDashboard from "@/pages/teachers/parent/dashboard"
+
+import ParentDashboard from "@/pages/parent/dashboard"
 import UnauthorizedPage from "@/components/UnauthorizedPage"
 import Logout from "@/pages/auth/logout"
 import { StudentLayout } from "@/pages/Layouts/studentLayout"
+import StudentSubjects from "@/pages/student/studentSubjects"
+import SchoolManagementHomepage from "@/pages/homepage"
+import StudentExams from "@/pages/student/studentExams"
+import TeachersDashboard from "@/pages/teachers/dashboard"
 
 export const router = createBrowserRouter([
+    { path: "/", element: <SchoolManagementHomepage/> },
     { path: "/login", element: <LoginPage /> },
     { path: "/logout", element: <Logout /> },
     { path: "/unauthorized", element: <UnauthorizedPage /> },
+    { path: "*", element: <UnauthorizedPage /> },
 
     {
         element: <ProtectedRoute allowedRoles={["admin"]} />,
@@ -63,14 +69,13 @@ export const router = createBrowserRouter([
                 children: [
 
                     { path: "/student", element: <StudentDashboard /> },
-                    { path: "/student/subjects", element: <p> subjects Page</p> },
-                    { path: "/student/lessons", element: <p> lessons Page</p> },
-                    { path: "/student/exams", element: <p> exams Page</p> },
+                    { path: "/student/subjects", element: <StudentSubjects/> },
+                    { path: "/student/exams", element: <StudentExams/> },
                     { path: "/student/assignments", element: <p> assignments Page</p> },
                     { path: "/student/results", element: <p> results Page</p> },
                     { path: "/student/attendance", element: <p> attendance Page</p> },
                     { path: "/student/events", element: <p> events Page</p> },
-                    { path: "/student/messages", element: <p> messages Page</p> },
+                    // { path: "/student/messages", element: <p> messages Page</p> },
                     { path: "/student/announcements", element: <p> announcements Page</p> },
                     { path: "/student/profile", element: <p> profile Page</p> },
                     { path: "/student/settings", element: <p> settings   Page</p> },

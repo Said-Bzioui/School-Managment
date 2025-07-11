@@ -10,7 +10,7 @@ class ParentsController extends Controller
 {
     public function index()
     {
-        return Parents::with(['user', 'student'])->get();
+        return Parents::with(['user', 'student'])->paginate(10);
     }
 
     public function store(Request $request)

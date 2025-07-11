@@ -17,7 +17,12 @@ return new class extends Migration
             $table->foreignId('class_id')->constrained()->onDelete('cascade');
             $table->foreignId('classroom_id')->constrained()->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-            $table->dateTime('date');
+            $table->enum('type', ['cc1', 'cc2', 'cc3', 'EFM']);
+            $table->enum('status', ['pending', 'completed'])->default('pending');
+            $table->date('date');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->unique(['subject_id', 'class_id', 'type'], 'unique_exam_BY_class_subject_type');
             $table->timestamps();
         });
     }

@@ -11,23 +11,6 @@ const ParentsList = () => {
 
 
 
-    if (isLoading) {
-        return (
-            <div className="w-full min-h-screen bg-white p-4 rounded-lg flex justify-center items-center">
-                <div className=" animate-spin w-[50px] h-[50px] border-4 border-gray-100 border-t-blue-500 rounded-full"></div>
-            </div>
-        );
-    }
-    if (error) {
-        return (
-            <div className="w-full min-h-screen  bg-white p-4 rounded-lg flex justify-center items-center">
-                <p className="text-red-500 text-[18px] text-center mt-5">Cnnot get Teachers ! Please try again later.</p>
-            </div>
-        );
-    }
-
-
-
 
     const columns = [
         {
@@ -64,16 +47,16 @@ const ParentsList = () => {
     const renderRow = (item) => (
         <tr key={item.id} className="border-b border-gray-100 hover:bg-sky/10 text-gray-600 text-sm">
             <td className="px-4 py-2 flex items-center space-x-2">
-                <img src={item?.user?.photo} className="w-8 h-8 rounded-full object-cover" />
+                <img src={"/logo.jpg"} className="w-8 h-8 border-2 border-gray-400 rounded-full object-cover" />
                 <div>
-                    <h1>{item?.user?.name}</h1>
+                    <h1>{item?.name}</h1>
                     <h2 className="text-gray-400 ">{item?.user?.email}</h2>
                 </div>
             </td>
-            <td className=" py-2 hidden md:table-cell">{item.student.cef}</td>
+            <td className=" py-2 hidden md:table-cell">{item.student.name}</td>
             <td className=" py-2 hidden md:table-cell">{item.relation}</td>
-            <td className=" py-2 hidden lg:table-cell">{item?.user.phone}</td>
-            <td className=" py-2 hidden lg:table-cell">{item?.user.address}</td>
+            <td className=" py-2 hidden lg:table-cell">{item?.phone}</td>
+            <td className=" py-2 hidden lg:table-cell">{item?.address || "Rabat"}</td>
             <td className="py-2 flex items-center space-x-2">
                 <div className="bg-sky/20 p-1 w-7 h-7 rounded-full flex items-center justify-center cursor-pointer">
                     <Eye size={24} color="gray" />
@@ -90,7 +73,7 @@ const ParentsList = () => {
     return (
         <div className="w-full min-h-screen bg-white p-4 rounded-lg ">
             <div className="flex flex-col md:flex-row items-center justify-between">
-                <h1 className="hidden md:block text-xl">Teachers List</h1>
+                <h1 className="hidden md:block text-xl">Parents List</h1>
                 <div className="flex space-x-2">
                     <SearchBox />
                     <div className="bg-blue p-1 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer">
@@ -98,7 +81,8 @@ const ParentsList = () => {
                     </div>
                 </div>
             </div>
-            <Table columns={columns} data={data} renderRow={renderRow} />
+            <Table columns={columns} data={data && data} renderRow={renderRow} isLoading={isLoading} error={error} />
+
         </div>
     );
 }

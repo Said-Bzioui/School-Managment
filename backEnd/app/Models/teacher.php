@@ -9,11 +9,7 @@ class Teacher extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'speciality',
-        'hire_date',
-    ];
+    protected $fillable = ['user_id', 'nom','prenom', 'phone', 'gender', 'photo'];
 
     public function user()
     {
@@ -38,5 +34,9 @@ class Teacher extends Model
     public function results()
     {
         return $this->hasMany(Result::class);
+    }
+    public function absences()
+    {
+        return $this->hasMany(absences::class);
     }
 }

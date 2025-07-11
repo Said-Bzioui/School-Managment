@@ -6,10 +6,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     protected $fillable = [
         'name',
@@ -27,6 +28,11 @@ class User extends Authenticatable
     ];
 
     // Relationships
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
     public function student()
     {
         return $this->hasOne(Student::class);
@@ -37,7 +43,7 @@ class User extends Authenticatable
         return $this->hasOne(Teacher::class);
     }
 
-    public function parentInfo() 
+    public function parent()
     {
         return $this->hasOne(Parents::class);
     }

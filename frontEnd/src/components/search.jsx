@@ -1,10 +1,14 @@
 import { Search } from "lucide-react";
+import { Input } from "./ui/input";
 
 export function SearchBox() {
     return (
-        <div className="flex items-center border-2 border-gray-300 w-56  h-9 rounded-full px-2">
-            <span className="text-xl p-0.5 text-gray-300"><Search/></span>
-            <input type="text" className=" w-full h-full px-2 outline-none  " placeholder="Search..." />
+        <div className=" relative">
+                <span className="p-0.5 text-gray-300 absolute left-1.5 top-1/2 -translate-y-1/2  "><Search /></span>
+
+            <Input className="border border-gray-300 pl-10 rounded-xl" placeholder="search..." >
+            </Input>
         </div>
+
     )
 }

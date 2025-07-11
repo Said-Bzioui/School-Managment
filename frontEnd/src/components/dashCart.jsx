@@ -1,5 +1,6 @@
 import { Ellipsis } from "lucide-react";
 import PropTypes from "prop-types";
+import { Skeleton } from "./ui/skeleton";
 
 
 export function DashCart({ label, count, isLoading, error }) {
@@ -7,9 +8,14 @@ export function DashCart({ label, count, isLoading, error }) {
     if (isLoading) {
         return (
 
-            <div className="rounded-lg odd:bg-sky even:bg-blue p-4 flex-1 min-w-[130px] min-h-10">
-                <div className=" animate-spin w-[20px] h-[20px] border-4 border-gray-100 border-t-blue-500 rounded-full"></div>
-            </div>
+            <>
+        
+                <div className="rounded-lg bg-white p-4 py-6 flex-1 min-w-[130px] flex flex-col space-y-3 ">
+                    <Skeleton className="h-4 w-[50px]" />
+                    <Skeleton className="h-4 w-[80px]" />
+                    <Skeleton className="h-4 w-[80px]" />
+                </div>
+            </>
         );
     }
     if (error) {
@@ -22,7 +28,7 @@ export function DashCart({ label, count, isLoading, error }) {
     }
     // ---------------------
     return (
-        <div className="rounded-lg odd:bg-sky even:bg-blue p-4 flex-1 min-w-[130px]">
+        <div className="rounded-lg odd:bg-primary/40 even:bg-indigo-200    p-4 flex-1 min-w-[130px]">
             <div className="flex justify-between items-center">
                 <span className="text-[10px] bg-white px-2 py-1 rounded-full text-green-600">
                     2024/25

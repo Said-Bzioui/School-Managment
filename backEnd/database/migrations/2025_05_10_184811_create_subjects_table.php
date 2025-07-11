@@ -14,8 +14,13 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('code');
             $table->unsignedBigInteger('teacher_id')->nullable();
+            $table->enum('niveu', ['1', '2'])->default('1');
+            $table->string('filier');
+            $table->integer('coificient')->default(1);
             $table->integer('masse_horaire');
+            $table->integer('done_hours');
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('set null');
             $table->timestamps();
         });

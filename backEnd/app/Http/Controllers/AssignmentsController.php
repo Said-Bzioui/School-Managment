@@ -10,7 +10,7 @@ class AssignmentsController extends Controller
     // عرض جميع التعيينات
     public function index()
     {
-        return Assignment::with(['subject', 'studentClass', 'teacher'])->get();
+        return Assignment::with(['subject', 'studentClass', 'teacher'])->paginate(10);
     }
 
     // إنشاء تعيين جديد
@@ -18,7 +18,7 @@ class AssignmentsController extends Controller
     {
         $request->validate([
             'subject_id' => 'required|exists:subjects,id',
-            'class_id' => 'required|exists:classrooms,id',
+            'class_id' => 'required|exists:classes,id',
             'teacher_id' => 'required|exists:teachers,id',
             'DueDate' => 'required|date',
         ]);

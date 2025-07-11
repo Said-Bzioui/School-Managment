@@ -6,19 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('photo')->nullable();
-            $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->enum('role', ['admin', 'student', 'teacher', 'parent'])->default('student');

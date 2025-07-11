@@ -20,10 +20,6 @@ export default function ProtectedRoute({ allowedRoles }) {
     useEffect(() => {
         if (!loading && user && !allowedRoles.includes(user.role)) {
             setUnauthorized(true);
-            const timer = setTimeout(() => {
-                navigate(-1); 
-            }, 2000);
-            return () => clearTimeout(timer);
         }
     }, [loading, user, allowedRoles, navigate]);
 
@@ -32,7 +28,7 @@ export default function ProtectedRoute({ allowedRoles }) {
     if (!user) return <Navigate to="/login" />;
 
     if (unauthorized) {
-        return <UnauthorizedPage/>
+        return <UnauthorizedPage />
     }
 
     return <Outlet />;

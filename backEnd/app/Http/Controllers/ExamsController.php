@@ -7,21 +7,36 @@ use Illuminate\Http\Request;
 
 class ExamsController extends Controller
 {
-    // جلب جميع الإمتحانات مع العلاقات
+
     public function index()
     {
-        return Exam::with(['teacher','studentClass', 'classroom', 'subject'])->get();
+        return Exam::with(['teacher', 'studentClass', 'classroom', 'subject'])
+            ->orderBy('subject_id')
+            ->paginate(10);
     }
 
-    // إنشاء إمتحان جديد
+
     public function store(Request $request)
     {
         $validated = $request->validate([
             'teacher_id' => 'required|exists:teachers,id',
             'classroom_id' => 'required|exists:classrooms,id',
             'subject_id' => 'required|exists:subjects,id',
+            'class_id' => 'required|exists:classes,id',
             'date' => 'required|date',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'type' => 'required',
         ]);
+        $existing = Exam::where('subject_id', $request->subject_id)
+            ->where('type', $request->type)
+            ->first();
+
+        if ($existing) {
+            return response()->json([
+                'message' => 'الامتحان من هاد النوع مسجل من قبل ✅'
+            ], 422);
+        }
 
         $exam = Exam::create($validated);
         return response()->json($exam, 201);

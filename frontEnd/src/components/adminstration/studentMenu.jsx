@@ -1,5 +1,6 @@
+import { BookA, BookCheck, BookOpenCheck, CircleUser, ClipboardList, House, LogOut, MessageCircleMore, Settings} from "lucide-react";
+
 import { Link, useLocation } from "react-router-dom";
-import { School } from "lucide-react";
 
 export const StudentMenu = () => {
     const location = useLocation();
@@ -9,61 +10,38 @@ export const StudentMenu = () => {
             title: "MENU",
             items: [
                 {
-                    icon: "/home.png",
+                    icon: <House />,
                     label: "Home",
                     href: "/student",
 
                 },
                 {
-                    icon: "/subject.png",
+                    icon: <ClipboardList />,
                     label: "Subjects",
                     href: "/student/subjects",
                 },
                 {
-                    icon: "/lesson.png",
-                    label: "Lessons",
-                    href: "/student/lessons",
-                },
-                {
-                    icon: "/exam.png",
+                    icon: <BookCheck />,
                     label: "Exams",
                     href: "/student/exams",
 
                 },
                 {
-                    icon: "/assignment.png",
+                    icon: <BookOpenCheck />,
                     label: "Assignments",
                     href: "/student/assignments",
 
                 },
                 {
-                    icon: "/result.png",
+                    icon: <BookA />,
                     label: "Results",
                     href: "/student/results",
 
                 },
                 {
-                    icon: "/attendance.png",
-                    label: "Attendance",
-                    href: "/student/attendance",
-
-                },
-                {
-                    icon: "/calendar.png",
-                    label: "Events",
-                    href: "/student/events",
-
-                },
-                {
-                    icon: "/message.png",
+                    icon: <MessageCircleMore />,
                     label: "Messages",
                     href: "/student/messages",
-
-                },
-                {
-                    icon: "/announcement.png",
-                    label: "Announcements",
-                    href: "/student/announcements",
 
                 },
             ],
@@ -72,19 +50,19 @@ export const StudentMenu = () => {
             title: "OTHER",
             items: [
                 {
-                    icon: "/profile.png",
+                    icon: <CircleUser />,
                     label: "Profile",
                     href: "/student/profile",
 
                 },
                 {
-                    icon: "/setting.png",
+                    icon: <Settings />,
                     label: "Settings",
                     href: "/student/settings",
 
                 },
                 {
-                    icon: "/logout.png",
+                    icon: <LogOut />,
                     label: "Logout",
                     href: "/logout",
 
@@ -96,10 +74,9 @@ export const StudentMenu = () => {
     return (
         <>
             <div className="flex justify-center items-center w-full pt-2">
-                <School />
-                <h1 className="text-gray-600 text-xl hidden lg:block font-semibold uppercase ">Said</h1>
+                <img src="/logo.png" alt="Logo" className="w-8 h-10" />
             </div>
-            <div className="my-10 lg:ps-4 text-sm">
+            <div className="my-10 lg:px-4 text-sm">
                 {menuItems.map((i) => (
                     <div className="flex flex-col gap-2" key={i.title}>
                         <span className="hidden lg:block text-gray-400 font-light my-4">
@@ -111,10 +88,10 @@ export const StudentMenu = () => {
                                 <Link
                                     to={item.href}
                                     key={item.label}
-                                    className={`flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-gray-200 ${isActive ? "bg-sky font-semibold" : ""
+                                    className={`flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-gray-200 ${isActive ? "bg-primary hover:bg-primary text-white font-semibold" : ""
                                         }`}
                                 >
-                                    <img src={item.icon} alt="" width={20} height={20} />
+                                    {item.icon}
                                     <span className="hidden lg:block">{item.label}</span>
                                 </Link>
                             );

@@ -10,7 +10,7 @@ class ResultController extends Controller
     // عرض جميع النتائج
     public function index()
     {
-        return response()->json(Result::with(['student', 'teacher', 'subject'])->get());
+        return response()->json(Result::with(['student', 'teacher', 'subject'])->paginate(10));
     }
 
     // تخزين نتيجة جديدة
@@ -20,10 +20,9 @@ class ResultController extends Controller
             'student_id' => 'required|exists:students,id',
             'teacher_id' => 'required|exists:teachers,id',
             'subject_id' => 'required|exists:subjects,id',
-            'classroom_id' => 'required|exists:classrooms,id',
-            'type' => 'required|in:examen,controle,devoir',
+            'class_id' => 'required|exists:classes,id',
+            'type' => 'required|in:cc1,cc2,cc3,EFM',
             'note' => 'required|numeric|min:0|max:20',
-            'date' => 'required|date',
         ]);
 
         $result = Result::create($request->all());

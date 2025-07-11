@@ -13,6 +13,8 @@ class Parents extends Model
 
     protected $fillable = [
         'user_id',
+        'nom',
+        'prenom',
         'relation',
         'student_id',
     ];

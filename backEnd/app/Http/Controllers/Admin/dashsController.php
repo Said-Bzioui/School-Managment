@@ -22,8 +22,8 @@ class DashsController extends Controller
     public function Students_Gender()
     {
         $students = Student::count();
-        $maleCount = User::where('role', 'student')->where('gender', 'male')->count();
-        $femaleCount = User::where('role', 'student')->where('gender', 'female')->count();
+        $maleCount = Student::where('gender', 'male')->count();
+        $femaleCount = Student::where('gender', 'female')->count();
 
         return response()->json([
             'total'=>   $students ,
