@@ -40,6 +40,7 @@ It is designed for educational institutions to manage daily academic operations 
 - 🐘 Laravel (PHP)
 - 🛢 MySQL
 - 🔐 Laravel Sanctum (auth)
+- 
 <img src="./screenshots/login.png" width="700" alt="App Preview" />
 ---
 
@@ -50,8 +51,13 @@ It is designed for educational institutions to manage daily academic operations 
 | ![](./screenshots/attendance_chart.png) | ![](./screenshots/gender_chart.png) | ![](./screenshots/events.png) |
 
 ---
-| Attendance Chart 
+| Attendance 
 |------------------|
 | ![](./screenshots/absence.png) 
+
+---
+| Student lessions calendar 
+|------------------|
+| ![](./screenshots/lessons.png) 
 
 
